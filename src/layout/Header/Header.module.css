@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: black;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+.mainLogo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.headerNav {
+  display: flex;
+  gap: 25px;
+}
+
+.headerNav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.headerNav a:hover {
+  color: rgb(52, 152, 219);
+}
+
+.menuIcon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.menuToggle {
+  display: none;
+}
+
+/* Mobile & Tablet */
+@media (max-width: 900px) {
+  .menuIcon {
+    display: block;
+  }
+
+  .headerNav {
+    display: none;
+    position: absolute;
+    top: 60%;
+    right: 20px;
+    background: black;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .headerNav a {
+    display: block;
+    padding: 12px 0;
+  }
+
+  .menuToggle:checked ~ .headerNav {
+    display: block;
+  }
+}

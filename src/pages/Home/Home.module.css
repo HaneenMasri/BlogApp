@@ -1,0 +1,30 @@
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.blogTitle {
+  text-align: center;
+  margin: 40px 0 30px;
+  font-size: 2rem;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 650px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 651px) and (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
