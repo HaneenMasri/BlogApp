@@ -1,1 +1,2 @@
-export { default } from "./BlogCard";
+import BlogCard from "./BlogCard";
+export default BlogCard;
