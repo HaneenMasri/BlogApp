@@ -1,13 +1,16 @@
+// src/App.jsx
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux"; 
+import { store } from "./store/store";
+import { routes } from "./routes";
 
-import Layout from './pages/Layout' 
-import Home from './pages/Home'
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <Layout>
-      <Home /> {/*props.children--inside app */}
-
-    </Layout>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 

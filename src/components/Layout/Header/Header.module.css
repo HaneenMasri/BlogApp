@@ -1,68 +1,134 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: black;
+  padding: 25px 5%; 
+  background-color: #000;
   color: white;
   position: sticky;
   top: 0;
+  z-index: 1000;
+  width: 100%;
 }
 
 .mainLogo {
   font-size: 22px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .headerNav {
   display: flex;
   gap: 25px;
+  align-items: center;
+
 }
 
 .headerNav a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .headerNav a:hover {
   color: rgb(52, 152, 219);
 }
-
 .menuIcon {
   display: none;
-  font-size: 30px;
+  font-size: 28px;
   cursor: pointer;
+  user-select: none;
 }
 
 .menuToggle {
   display: none;
 }
-
-/* Mobile & Tablet */
 @media (max-width: 900px) {
   .menuIcon {
     display: block;
   }
 
   .headerNav {
-    display: none;
+    display: none; 
+    flex-direction: column;
     position: absolute;
-    top: 60%;
-    right: 20px;
-    background: black;
+    top: 100%; 
+    left: 5%;
+    right: 5%;
+    background: #111;
+    border: 1px solid #333;
     border-radius: 8px;
-    text-align: center;
-    padding: 15px;
+    padding: 20px;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
   }
 
   .headerNav a {
-    display: block;
-    padding: 12px 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
   }
-
   .menuToggle:checked ~ .headerNav {
-    display: block;
+    display: flex;
   }
+}
+.langDropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.burgerBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.langMenu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.langMenu button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.langMenu button:hover {
+  background-color: #444;
+}
+[dir="rtl"] .header {
+  flex-direction: row; 
+}
+
+[dir="rtl"] .langMenu {
+  right: auto;
+  left: 0; 
 }

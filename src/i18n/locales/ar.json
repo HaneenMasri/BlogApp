@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "add_blog": "إضافة مدونة جديدة"
+  },
+  "home": {
+    "title": "الرئيسية",
+    "no_blogs": "لا توجد مدونات"
+  },
+  "pagination": {
+    "prev": "السابق",
+    "next": "التالي",
+    "page": "صفحة",
+    "of": "من"
+  },
+  "form": {
+    "add_title": "إضافة مدونة جديدة",
+    "edit_title": "تعديل المدونة",
+    "label_title": "العنوان",
+    "label_desc": "الوصف",
+    "placeholder_title": "أدخل العنوان...",
+    "placeholder_desc": "أدخل الوصف...",
+    "btn_add": "إضافة مدونة",
+    "btn_cancel": "إلغاء"
+  },
+
+    "common": {
+      "loading": "جاري التحميل...",
+      "blog": "مدونة"
+    },
+    "delete_modal": {
+    "title": "هل أنت متأكد؟",
+    "message": "سيتم حذف هذه المدونة نهائياً!",
+    "btn_confirm": "نعم، احذفها",
+    "btn_cancel": "إلغاء"
+  }
+  }

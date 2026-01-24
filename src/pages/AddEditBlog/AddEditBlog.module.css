@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+  background-color: #f9f9f9;
+}
+
+.formCard {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 28px;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.subtitle {
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.inputGroup input, .inputGroup textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.inputGroup input:focus, .inputGroup textarea:focus {
+  border-color: #3498db;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.submitBtn {
+  flex: 2;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: #333;
+}
+
+.cancelBtn {
+  flex: 1;
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background-color: #f5f5f5;
+}
+.errorText {
+  color: #e74c3c; 
+  font-size: 15px;
+  margin-top: 5px;
+  display: block;
+}
+
+.submitBtn:disabled {
+  background-color: #ccc; 
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.inputGroup input, .inputGroup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.inputGroup input:invalid {
+  border-color: #e74c3c;
+}

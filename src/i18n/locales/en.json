@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "add_blog": "Add New Blog"
+  },
+  "home": {
+    "title": "Home",
+    "no_blogs": "No Blogs"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of"
+  },
+  "form": {
+    "add_title": "Add New Blog",
+    "edit_title": "Edit Blog",
+    "label_title": "Title",
+    "label_desc": "Description",
+    "placeholder_title": "Enter title...",
+    "placeholder_desc": "Enter description...",
+    "btn_add": "Add Blog",
+    "btn_cancel": "Cancel"
+  },
+    "common": {
+        "loading": "Loading...",
+        "blog": "BLOG"
+    },
+    "delete_modal": {
+    "title": "Are you sure?",
+    "message": "This blog will be permanently deleted!",
+    "btn_confirm": "Yes, delete it",
+    "btn_cancel": "Cancel"
+  }
+}
