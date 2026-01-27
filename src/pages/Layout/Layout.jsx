@@ -1,42 +1,32 @@
-import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'; 
-import { setPageTitle } from '../../store/uiSlice';
-import { ROUTE_PATHS, PAGE_TITLES } from '../../configs/router-config';
-import Header from '../../components/Layout/Header/Header';
-import Footer from '../../components/Layout/Footer/Footer';
-import styles from './Layout.module.css'; 
+// src/pages/Layout/Layout.jsx
+import { Outlet, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
+import styles from "./Layout.module.css";
+import Loader from "../../components/Layout/Loader";
 
-const Layout = () => {
+function Layout() {
   const location = useLocation();
-  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  const isLoading = useSelector((state) => state.ui.isGlobalLoading);
-
-  useEffect(() => {
-    if (location.pathname === ROUTE_PATHS.HOME) {
-      dispatch(setPageTitle(PAGE_TITLES.HOME));
-    } else if (location.pathname === ROUTE_PATHS.ADD_BLOG) {
-      dispatch(setPageTitle(PAGE_TITLES.ADD_BLOG));
-    } else if (location.pathname.includes('/edit-blog')) {
-      dispatch(setPageTitle(PAGE_TITLES.EDIT_BLOG));
-    }
-  }, [location.pathname, dispatch]);
+  let pageTitle = t("home");
+  if (location.pathname === "/blog/new") pageTitle = t("addBlog");
+  else if (location.pathname.includes("/edit")) pageTitle = t("editBlog");
 
   return (
     <>
-     {isLoading && (
-        <div className={styles.loaderContainer}>
-          <div className={styles.spinner}></div>
-        </div>
-      )}
       <Header />
-      <main>
+      <Loader />
+
+      <main className={styles.main}>
+        <h1 className={styles.pageTitle}>{pageTitle}</h1>
         <Outlet />
       </main>
+
       <Footer />
     </>
   );
-};
+}
 
 export default Layout;

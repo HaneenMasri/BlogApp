@@ -1,57 +1,83 @@
-import { Pencil, Trash2 } from 'lucide-react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, Form, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Swal from 'sweetalert2';
-import { deleteBlog } from '../../../store/blogSlice';
 import styles from "./BlogCard.module.css";
 
-function BlogCard({ blog }) {
-  const { t } = useTranslation(); 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+function BlogCard({
+  id,
+  title,
+  description,
+  titleEn,
+  descEn,
+  titleAr,
+  descAr,
+}) {
+  const location = useLocation();
+  const { t, i18n } = useTranslation();
 
-  const handleDelete = () => {
-    Swal.fire({
-      title: t("delete_modal.title"),
-      text: t("delete_modal.message"),
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: t("delete_modal.btn_confirm"),
-      cancelButtonText: t("delete_modal.btn_cancel"),
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteBlog(blog.id));
-      }
-    });
-  };
+  const isArabic = i18n.language === "ar";
+
+  const displayTitle =
+    title && title.trim().length > 0
+      ? title
+      : isArabic
+        ? titleAr || titleEn || ""
+        : titleEn || titleAr || "";
+
+  const displayDesc =
+    description && description.trim().length > 0
+      ? description
+      : isArabic
+        ? descAr || descEn || ""
+        : descEn || descAr || "";
 
   return (
     <div className={styles.card}>
-      <div className={styles.imageContainer}>
-        <img src={blog.image} alt={blog.title} className={styles.cardImage} />
-        
-        <div className={styles.cardActions}>
-          <button 
-            className={`${styles.actionBtn} ${styles.editBtn}`} 
-            onClick={() => navigate(`/edit-blog/${blog.id}`)}
+      <div className={styles.media}>
+        <img
+          className={styles.img}
+          src={`https://picsum.photos/seed/${id}/400/300`}
+          alt={displayTitle}
+        />
+
+        <div className={styles.iconBar}>
+
+          <Link
+            to={`/blog/${id}/edit${location.search}`}
+            className={styles.iconBtn}
+            aria-label={t("edit")}
+            title={t("edit")}
           >
-            <Pencil size={18} />
-          </button>
-          
-          <button 
-            className={`${styles.actionBtn} ${styles.deleteBtn}`} 
-            onClick={handleDelete}
+            <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm2.92 2.83H5v-.92l9.06-9.06.92.92L5.92 20.08zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z" />
+            </svg>
+          </Link>
+
+          <Form
+            method="post"
+            action={`/blog/${id}/delete${location.search}`}
           >
-            <Trash2 size={18} />
-          </button>
+            <button
+              type="submit"
+              className={styles.iconBtn}
+              aria-label={t("delete")}
+              title={t("delete")}
+              onClick={(e) => {
+                if (!window.confirm(t("confirmDelete") || "Are you sure?")) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 7h12l-1 14H7L6 7zm3-3h6l1 2H8l1-2zM9 9h2v10H9V9zm4 0h2v10h-2V9z" />
+              </svg>
+            </button>
+          </Form>
         </div>
       </div>
-      
-      <div className={styles.contentContainer}>
-        <h3 className={styles.cardTitle}>{blog.title}</h3>
-        <p className={styles.cardDescription}>{blog.description}</p>
+
+      <div className={styles.content}>
+        <h3 className={styles.title}>{displayTitle}</h3>
+        <p className={styles.desc}>{displayDesc}</p>
       </div>
     </div>
   );

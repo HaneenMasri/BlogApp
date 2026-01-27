@@ -1,108 +1,120 @@
-// src/pages/AddEditBlog/AddEditBlog.jsx
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useSubmit, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { addBlog, updateBlog } from "../../store/blogSlice";
-import { setPageTitle } from "../../store/uiSlice"; 
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import styles from "./AddEditBlog.module.css";
 
 function AddEditBlog() {
-  const { t } = useTranslation();
-  const { id } = useParams();//يجيب رقم البلوج من الرابط /edit-blog/:id
-  const isEditMode = !!(id);
-  const dispatch = useDispatch();
+  const location = useLocation();
+  const submit = useSubmit();
   const navigate = useNavigate();
+  const { t } = useTranslation(); 
 
-  const existingBlog = useSelector((state) =>
-    state.blogs.items.find((item) => item.id === Number(id))
-  );
+  const loaderData = useLoaderData();
+  const blog = loaderData?.blog || null;
+
+  const isEditMode = useMemo(() => location.pathname.includes("/edit"), [location.pathname]);
+const schema = yup.object().shape({
+  title: yup
+    .string()
+    .required(t("validation.titleRequired"))
+    .max(50, t("validation.titleMax"))
+    .test("no-arabic", t("validation.noArabic"), (value) => {
+      if (!value) return true;
+      return !/[ء-ي]/.test(value);
+    })
+    .test("no-special-chars", t("validation.noSpecialChars"), (value) => {
+      if (!value) return true;
+      return /^[A-Za-z\s]+$/.test(value); 
+    })
+    .test("capital-first", t("validation.capitalFirst"), (value) => {
+      if (!value) return true;
+      return /^[A-Z]/.test(value); 
+    }),
+
+  description: yup
+    .string()
+    .required(t("validation.descRequired"))
+    .max(1000, t("validation.descMax"))
+    .test("no-arabic", t("validation.noArabic"), (value) => {
+      if (!value) return true;
+      return !/[ء-ي]/.test(value);
+    })
+    .test("no-special-chars", t("validation.noSpecialChars"), (value) => {
+      if (!value) return true;
+      return /^[A-Za-z\s]+$/.test(value);
+    }),
+});
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm({
-    mode: "onChange",//يعني الفورم يتحقق من القيم أثناء الكتابة وليس بعد الضغط على submit.
+    mode: "onChange", 
+    defaultValues: { title: "", description: "" },
+    resolver: yupResolver(schema),
   });
 
   useEffect(() => {
-    const titleKey = isEditMode ? "form.edit_title" : "nav.add_blog";
-    dispatch(setPageTitle(titleKey));
-  }, [dispatch, isEditMode]); 
-
-  useEffect(() => {
-    if (isEditMode && existingBlog) {
-      reset(existingBlog);
+    if (isEditMode && blog) {
+      reset({
+        title: blog.title || "",
+        description: blog.description || "",
+      });
+    } else if (!isEditMode) {
+      reset({ title: "", description: "" });
     }
-  }, [isEditMode, existingBlog, reset]);
+  }, [blog, isEditMode, reset]);
 
-  const onSubmit = (data) => { //data → القيم الجديدة اللي دخلها المستخدم في الفورم.
-    if (isEditMode) {
-      dispatch(updateBlog({ ...existingBlog, ...data }));//ندمج القيم القديمة مع الجديدة.
-    } else {
-      dispatch(addBlog(data));
-    }
-    navigate("/");
+  const onSubmit = (data) => {
+    const fd = new FormData();
+    fd.append("title", data.title.trim());
+    fd.append("description", data.description.trim());
+
+    submit(fd, {
+      method: "post",
+      action: location.pathname,
+    });
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formCard}>
-        <h2 className={styles.title}>
-          {isEditMode ? t("form.edit_title") : t("form.add_title")}
-        </h2>
-        
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.inputGroup}>
-            <label>{t("form.label_title")}</label>
-            <input
-              {...register("title", {
-                required: "Title is required",
-                maxLength: { value: 50, message: "Max 50 characters allowed" },
-                validate: {
-                 noArabic: (v) => !v.match(/[ء-ي]/) || "Arabic characters are not allowed",
-                  noSpecial: (v) => /^[a-zA-Z0-9 ]*$/.test(v) || "Special characters are not allowed",
-                  capitalize: (v) => /^[A-Z]/.test(v) || "First letter must be capitalized",
-                  englishOnly: (v) => /^[a-zA-Z ]*$/.test(v) || "Only English allowed"
-                }
-              })}
-              placeholder={t("form.placeholder_title")}
-            />
-            {errors.title && <span className={styles.errorText}>{errors.title.message}</span>}
-          </div>
+    <main className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="title">{t("title")}</label>
+          <input
+            id="title"
+            className={`${styles.input} ${errors.title ? styles.inputError : ""}`}
+            type="text"
+            {...register("title")}
+          />
+          {errors.title && <p className={styles.error}>{errors.title.message}</p>}
+        </div>
 
-          <div className={styles.inputGroup}>
-            <label>{t("form.label_desc")}</label>
-            <textarea
-              {...register("description", {
-                required: "Description is required",
-                maxLength: { value: 1000, message: "Max 1000 characters" },
-                validate: {
-                  noArabic: (v) => !v.match(/[ء-ي]/) || "Arabic characters are not allowed",
-                  noSpecial: (v) => /^[a-zA-Z0-9 ]*$/.test(v) || "Special characters are not allowed",
-                  englishOnly: (v) => /^[a-zA-Z ]*$/.test(v) || "Only English allowed"
-
-                }
-              })}
-              rows="5"
-              placeholder={t("form.placeholder_desc")}
-            ></textarea>
-            {errors.description && <span className={styles.errorText}>{errors.description.message}</span>}
-          </div>
-
-          <div className={styles.actions}>
-            <button type="button" onClick={() => navigate("/")} className={styles.cancelBtn}>
-              {t("form.btn_cancel")}
-            </button>
-            <button type="submit" className={styles.submitBtn} disabled={!isValid}>
-              {isEditMode ? t("form.edit_title") : t("form.btn_add")}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="description">{t("description")}</label>
+          <textarea
+            id="description"
+            className={`${styles.textarea} ${errors.description ? styles.inputError : ""}`}
+            rows={6}
+            {...register("description")}
+          />
+          {errors.description && <p className={styles.error}>{errors.description.message}</p>}
+        </div>
+        <div className={styles.actions}>
+          <button type="submit" className={styles.submit} disabled={!isValid}>
+            {isEditMode ? t("edit") : t("add")}
+          </button>
+          
+          <button type="button" className={styles.cancelBtn} onClick={() => navigate("/")}>
+            {t("cancel")}
+          </button>
+        </div>
+      </form>
+    </main>
   );
 }
 

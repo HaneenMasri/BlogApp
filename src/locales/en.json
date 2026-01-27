@@ -1,0 +1,30 @@
+{
+  "loadingBlogs": "Loading blogs...",
+  "blog": "BLOG",
+  "home": "Home",
+  "addBlog": "Add New Blog",
+  "editBlog": "Edit Blog",
+  "title": "Title",
+  "description": "Description",
+  "add": "Add Blog",
+  "edit": "Edit Blog",
+  "delete": "Delete",
+  "prev": "Previous",
+  "next": "Next",
+  "pageOf": "Page {{current}} of {{total}}",
+  "reset": "Reset Blogs",
+  "validation": {
+    "titleRequired": "Title is required",
+    "titleMax": "Title cannot exceed 50 characters",
+    "titlePatternEn": "English letters and spaces only (no special characters)",
+    "titlePatternAr": "Arabic letters and spaces only (no special characters)",
+    "titleCapital": "First letter must be capital",
+    "descRequired": "Description is required",
+    "descMax": "Description cannot exceed 1000",
+    "descPatternEn": "English letters and spaces only (no special characters)",
+    "descPatternAr": "Arabic letters and spaces only (no special characters)",
+    "noArabic": "Arabic letters are not allowed",
+    "noSpecialChars": "Numbers and special characters are not allowed",
+    "capitalFirst": "The first letter must be capitalized"
+  }
+}

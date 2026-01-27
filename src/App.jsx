@@ -1,17 +1,23 @@
-// src/App.jsx
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux"; 
-import { store } from "./store/store";
-import { routes } from "./routes";
+import { RouterProvider } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import router from "./configs/router-config";
+import styles from "./components/Layout/Loader/Loader.module.css";
 
-const router = createBrowserRouter(routes);
+function RouterFallback() {
+  const { t } = useTranslation();
 
-function App() {
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <div className={styles.backdrop}>
+      <div className={styles.box}>
+        <div className={styles.spinner} />
+        <p className={styles.text}>{t("loadingBlogs")}</p>
+      </div>
+    </div>
   );
 }
+
+const App = () => {
+  return <RouterProvider router={router} fallbackElement={<RouterFallback />} />;
+};
 
 export default App;

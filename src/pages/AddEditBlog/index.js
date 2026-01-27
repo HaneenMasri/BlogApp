@@ -1,2 +1,2 @@
-import AddEditLayout from "./AddEditLayout";
-export default AddEditLayout;
+import AddEditBlog from "./AddEditBlog.jsx";
+export default AddEditBlog;
