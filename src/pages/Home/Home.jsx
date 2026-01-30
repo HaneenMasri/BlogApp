@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react";
+// Home.jsx
 import { useLoaderData } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { startLoading, stopLoading } from "../../store/loaderSlice";
 import styles from "./Home.module.css";
 import BlogCard from "../../components/Home/BlogCard";
 import Pagination from "../../components/Home/Pagination";
 
 function Home() {
-  // جلب البيانات القادمة من الـ Loader
   const { blogs, pagination } = useLoaderData();
-  const dispatch = useDispatch();
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    dispatch(startLoading());
-    const timer = setTimeout(() => {
-      dispatch(stopLoading());
-      setReady(true); // تفعيل عرض المحتوى بعد انتهاء التحميل
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <main className={styles.container}>
-      {ready && (
+      {blogs.length > 0 ? (
         <>
           <section className={styles.cardsGrid}>
             {blogs.map((blog) => (
@@ -42,6 +27,8 @@ function Home() {
             totalPages={pagination.totalPages}
           />
         </>
+      ) : (
+        <p>"Blogs Not Found"</p>
       )}
     </main>
   );

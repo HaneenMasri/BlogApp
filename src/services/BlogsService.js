@@ -15,7 +15,7 @@ export async function getBlogByIdFromServer(id) {
 export async function addBlogToServer(blogData) {
   const response = await fetch(BLOGS_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },//نخبر السيرفر أن البيانات ستكون بصيغة JSON.
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
       ...blogData, 
       createdAt: Date.now() 

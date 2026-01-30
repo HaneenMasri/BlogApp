@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./App.css";
 import store from "./configs/store-config";
-import "./configs/config";
+import "./configs/i18n-config";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

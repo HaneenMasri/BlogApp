@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Header.module.css";
 
 function Header() {
   const { t, i18n } = useTranslation();
-  const [isLangOpen, setIsLangOpen] = useState(false); 
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
-  const handleLanguageChange = (lng) => {
+  const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lng;
-    setIsLangOpen(false); 
+    setIsLangOpen(false);
   };
 
   useEffect(() => {
@@ -19,46 +19,45 @@ function Header() {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
 
+  return (
+    <header className={styles.header}>
+      <div className={styles.logo}>{t("blog")}</div>
 
-   return (
-  <header className={styles.header}>
-    <div className={styles.logo}>{t("blog")}</div>
+      <div className={styles.navContainer}>
+        <div className={styles.langDropdown}>
+          <button
+            className={styles.langBtn}
+            onClick={() => setIsLangOpen(!isLangOpen)}
+          >
+            {i18n.language.toUpperCase()}
+          </button>
 
-    <div className={styles.navContainer}>
-      <div className={styles.langDropdown}>
-        <button
-          className={styles.langBtn}
-          onClick={() => setIsLangOpen(!isLangOpen)}
-        >
-          {i18n.language.toUpperCase()}
-        </button>
+          {isLangOpen && (
+            <div className={styles.langMenu}>
+              <button onClick={() => changeLanguage("ar")}>Arabic</button>
+              <button onClick={() => changeLanguage("en")}>English</button>
+            </div>
+          )}
+        </div>
 
-        {isLangOpen && (
-          <div className={styles.langMenu}>
-            <button onClick={() => handleLanguageChange("ar")}>Arabic</button>
-            <button onClick={() => handleLanguageChange("en")}>English</button>
-          </div>
-        )}
+        <input type="checkbox" id="menu-toggle" className={styles.toggle} />
+        <label htmlFor="menu-toggle" className={styles.hamburger}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <nav className={styles.nav}>
+          <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>
+            {t("home")}
+          </NavLink>
+          <NavLink to="/blog/new" className={({ isActive }) => isActive ? styles.active : undefined}>
+            {t("addBlog")}
+          </NavLink>
+        </nav>
       </div>
-
-      <input type="checkbox" id="menu-toggle" className={styles.toggle} />
-      <label htmlFor="menu-toggle" className={styles.hamburger}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <nav className={styles.nav}>
-        <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          {t("home")}
-        </NavLink>
-        <NavLink to="/blog/new" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          {t("addBlog")}
-        </NavLink>
-      </nav>
-    </div>
-  </header>
-);
+    </header>
+  );
 }
 
 export default Header;

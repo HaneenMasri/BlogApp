@@ -1,10 +1,9 @@
 .footer {
   margin-top: 40px;
-  background: #222;
+  background: black;
   color: white;
-  padding: 20px;
-  font-size: 14px;
-
+  padding: 30px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +30,7 @@
   border-radius: 8px;
   font-weight: 600;
   background: white;
-  color: #222;
+  color: black;
 }
 
 .resetBtn:hover {

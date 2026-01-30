@@ -32,7 +32,19 @@
 .text {
   margin: 0;
   color: #111827;
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 1000;
+  font-size: 20px;
   text-align: center;
+}
+:global(.loading-active) .main-content-area {
+  display: none;
+}
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background:gray; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }

@@ -1,90 +1,113 @@
 {
   "blogs": [
     {
-      "id": "2",
-      "title": "Artificial Intelligencehgggiiiii",
-      "description": "AI is revolutionizing the way computers solve problems and make decisions"
-    },
-    {
-      "id": "4",
-      "title": "Cybersecurity",
-      "description": "Protect networks, systems, and data from cyber threats and attacks."
-    },
-    {
-      "id": "5",
-      "title": "Mobile App Development",
-      "description": "Create responsive and engaging mobile applications for Android and iOS."
-    },
-    {
-      "id": "6",
-      "title": "Data Science",
-      "description": "Analyze and interpret complex data to make informed business decisions."
-    },
-    {
-      "id": "7",
-      "title": "Web Development",
-      "description": "Building modern websites using HTML, CSS, and JavaScript."
-    },
-    {
-      "id": "8",
-      "title": "Blockchain Technology",
-      "description": "Explore decentralized systems and secure digital transactions."
-    },
-    {
       "id": "9",
       "title": "Edge Computingd",
-      "description": "Processing data closer to the source to reduce latency and improve performanced"
+      "description": "Processing data closer to the source to reduce latency and improve performancedjjjj",
+      "lang": "en"
     },
     {
       "id": "10",
-      "title": "Machine Learning",
-      "description": "Teaching computers to learn from data and improve through experience without programming."
+      "title": "Machine Learninging",
+      "description": "Teaching computers to learn from data and improve through experience without programming",
+      "lang": "en"
     },
     {
       "id": "11",
       "title": "DevOps Practices",
-      "description": "Bridging the gap between development and operations for faster software delivery."
+      "description": "Bridging the gap between development and operations for faster software delivery.",
+      "lang": "en"
     },
     {
       "id": "12",
       "title": "Quantum Computing",
-      "description": "Exploring the next generation of computing power based on quantum mechanics principles."
+      "description": "Exploring the next generation of computing power based on quantum mechanics principles.",
+      "lang": "en"
     },
     {
       "id": "13",
       "title": "User Experience Design",
-      "description": "Creating products that provide meaningful and relevant experiences to users."
+      "description": "Creating products that provide meaningful and relevant experiences to users.",
+      "lang": "en"
     },
     {
       "id": "14",
       "title": "Big Data Analytics",
-      "description": "Extracting valuable insights from massive amounts of structured and unstructured data."
+      "description": "Extracting valuable insights from massive amounts of structured and unstructured data.",
+      "lang": "en"
     },
     {
       "id": "15",
       "title": "Augmented Reality",
-      "description": "Overlaying digital information onto the real world to enhance user perception."
+      "description": "Overlaying digital information onto the real world to enhance user perception.",
+      "lang": "en"
     },
     {
       "id": "16",
       "title": "Cloud Native Apps",
-      "description": "Building and running scalable applications in modern, dynamic environments like public clouds."
+      "description": "Building and running scalable applications in modern, dynamic environments like public clouds.",
+      "lang": "en"
     },
     {
       "id": "17",
       "title": "Network Security",
-      "description": "Implementing protocols and tools to protect the integrity and usability of networks."
+      "description": "Implementing protocols and tools to protect the integrity and usability of networks.",
+      "lang": "en"
     },
     {
       "id": "18",
       "title": "Digital Marketing Tech",
-      "description": "Leveraging technology to reach customers and promote brands in the digital space."
+      "description": "Leveraging technology to reach customers and promote brands in the digital space.",
+      "lang": "en"
     },
     {
-      "id": "3f27",
-      "title": "Trrr",
-      "description": "fffffffffffffffggggggggggggggggggg",
-      "createdAt": 1769518674100
+      "id": "9222",
+      "title": "Blockchain Technologe",
+      "description": "Explore decentralized systems and secure digital transaction",
+      "createdAt": 1769793594746,
+      "lang": "en"
+    },
+    {
+      "id": "19",
+      "title": "تطوير الويب",
+      "description": "بناء مواقع ويب حديثة باستخدام HTML و CSS و JavaScript",
+      "createdAt": 1769794000000,
+      "lang": "ar"
+    },
+    {
+      "id": "20",
+      "title": "الذكاء الاصطناعي",
+      "description": "مجال يهتم بتطوير أنظمة قادرة على محاكاة التفكير البشري واتخاذ القرارات",
+      "createdAt": 1769794100000,
+      "lang": "ar"
+    },
+    {
+      "id": "21",
+      "title": "أمن المعلومات",
+      "description": "حماية البيانات والأنظمة من الاختراق والهجمات الإلكترونية",
+      "createdAt": 1769794200000,
+      "lang": "ar"
+    },
+    {
+      "id": "22",
+      "title": "الحوسبة السحابية",
+      "description": "تشغيل التطبيقات وتخزين البيانات عبر الإنترنت بدلاً من الأجهزة المحلية",
+      "createdAt": 1769794300000,
+      "lang": "ar"
+    },
+    {
+      "id": "23",
+      "title": "تحليل البيانات",
+      "description": "استخلاص معلومات قيّمة من كميات كبيرة من البيانات لدعم اتخاذ القرار",
+      "createdAt": 1769794400000,
+      "lang": "ar"
+    },
+    {
+      "id": "24",
+      "title": " حنين",
+      "description": "حنين",
+      "lang": "ar",
+      "createdAt": 1769801949233
     }
   ]
 }

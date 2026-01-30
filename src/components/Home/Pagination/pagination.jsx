@@ -1,24 +1,14 @@
-//src/components/Home/Pagination/pagination.jsx
-import { useSearchParams } from "react-router-dom";
+// src/components/Home/Pagination/Pagination.jsx
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Pagination.module.css";
 
 function Pagination({ currentPage, totalPages }) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const goToPage = (page) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", String(page));
-    setSearchParams(newParams);
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) goToPage(currentPage - 1);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) goToPage(currentPage + 1);
+    navigate(`/?page=${page}`);
   };
 
   return (
@@ -26,7 +16,7 @@ function Pagination({ currentPage, totalPages }) {
       <button
         type="button"
         className={styles.btn}
-        onClick={handlePrev}
+        onClick={() => goToPage(currentPage - 1)}
         disabled={currentPage === 1}
       >
         {t("prev")}
@@ -39,7 +29,7 @@ function Pagination({ currentPage, totalPages }) {
       <button
         type="button"
         className={styles.btn}
-        onClick={handleNext}
+        onClick={() => goToPage(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         {t("next")}
