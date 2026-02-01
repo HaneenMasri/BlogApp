@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const BLOGS_URL = "http://localhost:3000/blogs";
 
 export async function getBlogsFromServer() {

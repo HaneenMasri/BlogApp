@@ -9,6 +9,7 @@ function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const navigate = useNavigate(); 
   const location = useLocation(); 
+  
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
@@ -27,7 +28,7 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>{t("blog")}</div>
+      <div className={styles.logo}>{t("blogs")}</div>
 
       <div className={styles.navContainer}>
         <div className={styles.langDropdown}>

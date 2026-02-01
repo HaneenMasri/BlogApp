@@ -23,6 +23,7 @@ function AddEditBlog() {
       .max(50, t("validation.titleMax"))
       .test("no-arabic", t("validation.noArabic"), (v) => !v || !/[ء-ي]/.test(v))
       .test("no-special-chars", t("validation.noSpecialChars"), (v) => !v || /^[A-Za-z\s]+$/.test(v))
+      
       .test("capital-first", t("validation.capitalFirst"), (v) => !v || /^[A-Z]/.test(v)),
     description: yup
       .string()
@@ -37,7 +38,7 @@ function AddEditBlog() {
     defaultValues: blog || { title: "", description: "" },
     resolver: yupResolver(schema),
   });
-
+  
   const showForm = navigation.state === "idle";
 
   const onSubmit = async (data) => {
@@ -75,7 +76,6 @@ function AddEditBlog() {
             {errors.title && <p className={styles.error}>{errors.title.message}</p>}
           </div>
           <div className={styles.field}>
-
 
             
             <label htmlFor="description" className={styles.label}>{t("description")}</label>

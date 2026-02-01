@@ -111,17 +111,13 @@
   }
 }
 
-/* ======== NAVIGATION FIX (التعديل الوحيد) ======== */
-
-/* افتراضي (موبايل) */
 .navMenu {
   display: none;
 }
 
-/* تابلت + ديسكتوب */
 @media (min-width: 768px) {
   .navMenu {
-    display: flex; /* أو block حسب تصميمك */
+    display: flex;
   }
 }
 

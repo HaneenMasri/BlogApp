@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Pagination.module.css";
 
+//props: currentPage, totalPages from loader by useLoaderData()
 function Pagination({ currentPage, totalPages }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-
+  // Function to navigate to a specific page
   const goToPage = (page) => {
     navigate(`/?page=${page}`);
   };
 
   return (
     <div className={styles.pagination}>
+      {/*  Previous Button */}
       <button
         type="button"
         className={styles.btn}

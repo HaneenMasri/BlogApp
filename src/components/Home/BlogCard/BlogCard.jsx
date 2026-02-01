@@ -9,7 +9,7 @@ function BlogCard({ id, title, description }) {
   const { t } = useTranslation();
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to delete this blog?")) return;
+  if (!window.confirm("Are you sure you want to delete this blog?")) return;
 
     try {
       await deleteBlogFromServer(id);
@@ -24,7 +24,7 @@ function BlogCard({ id, title, description }) {
       <div className={styles.media}>
         <img
           className={styles.img}
-          src={`https://picsum.photos/seed/${id}/400/300`}
+          src={`https://picsum.photos/seed/${id}/300/300`}
           alt={title}
         />
 
